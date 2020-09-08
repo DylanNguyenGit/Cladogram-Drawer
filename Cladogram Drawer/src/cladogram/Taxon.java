@@ -19,6 +19,7 @@ public class Taxon {
 		children = new ArrayList<Taxon>();
 		x = 0;
 		y = 0;
+		isDrawn = false;
 	}
 	
 	/**
@@ -104,9 +105,18 @@ public class Taxon {
 		return y;
 	}
 	
+	public void setDrawn(Boolean drawn) {
+		isDrawn = drawn;
+	}
+	
+	public boolean isDrawn() {
+		return isDrawn;
+	}
+	
 	private String name;
 	private Taxon parent;
 	private ArrayList<Taxon> children;
 	private int x;
 	private int y;
+	private boolean isDrawn;
 }
