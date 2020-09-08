@@ -17,6 +17,8 @@ public class Taxon {
 		this.name = name;
 		parent = null;
 		children = new ArrayList<Taxon>();
+		x = 0;
+		y = 0;
 	}
 	
 	/**
@@ -42,7 +44,7 @@ public class Taxon {
 	 * sets name to given String
 	 * @param name new name of taxon
 	 */
-	public void setName(String name) {
+	public void setName(String name){
 		this.name = name;
 	}
 	
@@ -58,7 +60,7 @@ public class Taxon {
 	 * Sets parent to given taxon
 	 * @param parent parent taxon of this taxon
 	 */
-	public void setParent(Taxon parent) {
+	public void setParent(Taxon parent){
 		this.parent = parent;
 	}
 	
@@ -66,11 +68,45 @@ public class Taxon {
 	 * return parent of taxon
 	 * @return parent taxon
 	 */
-	public Taxon getParent() {
+	public Taxon getParent(){
 		return parent;
+	}
+	
+	/**
+	 * sets x coordinate to given value
+	 * @param x new x coordinate
+	 */
+	public void setX(int x){
+		this.x = x;
+	}
+	
+	/**
+	 * Returns x coordinate
+	 * @return x coordinate
+	 */
+	public int getX(){
+		return x;
+	}
+	
+	/**
+	 * sets y coordinate to given int
+	 * @param y new y coordinate
+	 */
+	public void setY(int y){
+		this.y = y;
+	}
+	
+	/**
+	 * returns y coordinate
+	 * @return y coordinate
+	 */
+	public int getY(){
+		return y;
 	}
 	
 	private String name;
 	private Taxon parent;
 	private ArrayList<Taxon> children;
+	private int x;
+	private int y;
 }
