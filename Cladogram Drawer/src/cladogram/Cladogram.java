@@ -16,8 +16,8 @@ public class Cladogram {
 	 * @param fName name of file to be read from
 	 */
 	public Cladogram(String fName) {
-		leaves = new ArrayList<Taxon>();
-		nodes = new ArrayList<Taxon>();
+		leaves = new ArrayList<Taxon>(20);
+		nodes = new ArrayList<Taxon>(20);
 		try {
 			//get scanner and continue erading while it gets lines
 			Scanner fileScanner = new Scanner(new File(fName));
@@ -52,6 +52,9 @@ public class Cladogram {
 		}
 		catch(Exception e) {
 			System.out.println(e.getMessage());
+			for(Taxon t : nodes) {
+				System.out.println(t.getName());
+			}
 		}
 	}
 	

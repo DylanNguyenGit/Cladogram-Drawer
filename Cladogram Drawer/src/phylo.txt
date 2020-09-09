@@ -25,5 +25,5 @@ Herpestoidea 13 23
 Viverroidea 17 24
 Feloidea 3 14
 Feliformia 15 25 26
-Carnivora 22 28
+Carnivora 22 27
 Ferae 16 28

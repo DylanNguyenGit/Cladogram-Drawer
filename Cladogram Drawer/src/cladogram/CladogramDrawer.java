@@ -8,7 +8,7 @@ import javax.swing.*;
 public class CladogramDrawer {
 	public static void main(String[] args) {
 		JFrame frame = new JFrame();
-		CladogramIcon icon = new CladogramIcon(1500, 2000, "src/phylo.txt");
+		CladogramIcon icon = new CladogramIcon(1000, 2000, "src/phylo.txt");
 		JLabel label = new JLabel(icon);
 		JScrollPane scroll = new JScrollPane(label);
 		scroll.setPreferredSize(new Dimension(1500, 1000));

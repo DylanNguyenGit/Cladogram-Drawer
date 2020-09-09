@@ -19,7 +19,7 @@ public class CladogramIcon implements Icon {
 		Graphics2D g2 = (Graphics2D)g;
 		
 		//set space between y values to make it so they all fit on the screen
-		int yStep = (height - 100) / (cladogram.getLeaves().size() - 1);
+		int yStep = (height - 40) / (cladogram.getLeaves().size() - 1);
 		//ensure the cladogram fits x wise since max tree height is leaves - 1
 		int xStep = (width - 105) / (cladogram.getLeaves().size() - 1); 
 		
@@ -59,14 +59,15 @@ public class CladogramIcon implements Icon {
 			//leaves are all aligned on the right and get drawn in a column
 			if(!t.isDrawn()) {
 				t.setX(width - 100);
-				t.setY(50 + yStep * leafCount);
+				t.setY(20 + yStep * leafCount);
+				t.setDrawn(true);
 				leafCount++;
 			}
 		}
 		else {
 			//draws all the children first
 			for(Taxon c : t.getChildren()) {
-				draw(c, g, yStep, xStep);
+				draw(c, g, xStep, yStep);
 			}
 				
 			if(!t.isDrawn()) {
@@ -83,7 +84,8 @@ public class CladogramIcon implements Icon {
 				
 			//draw connecting lines
 			for(Taxon c : t.getChildren()) {
-				g.drawLine(t.getX()  + (int)r.getWidth(), t.getY() - fm.getAscent() / 2, c.getX(), c.getY() - fm.getAscent() / 2);
+				g.drawLine(t.getX()  + (int)r.getWidth(), c.getY() - fm.getAscent() / 2, c.getX(), c.getY() - fm.getAscent() / 2);
+				g.drawLine(t.getX()  + (int)r.getWidth(), t.getY() - fm.getAscent() / 2, t.getX()  + (int)r.getWidth(), c.getY() - fm.getAscent() / 2);
 			}
 			
 		}
