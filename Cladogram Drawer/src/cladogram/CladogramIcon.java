@@ -21,7 +21,7 @@ public class CladogramIcon implements Icon {
 		//set space between y values to make it so they all fit on the screen
 		int yStep = (height - 40) / (cladogram.getLeaves().size() - 1);
 		//ensure the cladogram fits x wise since max tree height is leaves - 1
-		int xStep = (width - 105) / (cladogram.getLeaves().size() - 1); 
+		int xStep = (width - 105) / (cladogram.getTreeHeight() - 1); 
 		
 		//picks initial leaf then draws entire tree by going up the tree
 		Taxon init = cladogram.getInitialTaxon(1);

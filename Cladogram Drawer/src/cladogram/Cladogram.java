@@ -16,8 +16,8 @@ public class Cladogram {
 	 * @param fName name of file to be read from
 	 */
 	public Cladogram(String fName) {
-		leaves = new ArrayList<Taxon>(20);
-		nodes = new ArrayList<Taxon>(20);
+		leaves = new ArrayList<Taxon>();
+		nodes = new ArrayList<Taxon>();
 		try {
 			//get scanner and continue erading while it gets lines
 			Scanner fileScanner = new Scanner(new File(fName));
@@ -58,6 +58,12 @@ public class Cladogram {
 		}
 	}
 	
+	// Empty constructor for a fresh Cladogram
+	public Cladogram() {
+		leaves = new ArrayList<Taxon>();
+		nodes = new ArrayList<Taxon>();
+	}
+	
 	/**
 	 * returns a designated leaf if it is within the bounds of leaves. Returns null otherwise.
 	 * @param n index of leaf to be taken
@@ -68,6 +74,27 @@ public class Cladogram {
 			return leaves.get(n - 1);
 		else
 			return null;
+	}
+	
+	/**
+	 * Returns the height of the tree
+	 * @return the height of the tree
+	 */
+	public int getTreeHeight() {
+		int max = 0;
+		//Goes through every leaf to find how many parent groups it belongs in
+		for(Taxon t : leaves) {
+			int height = 0;
+			//adds height for every parent group
+			while(t != null) {
+				height++;
+				t = t.getParent();
+			}
+			//the height of entire tree will be determined by 
+			//maximum amount of parent groups a leaf is in
+			max = Math.max(max, height);
+		}
+		return max;
 	}
 	
 	/**
