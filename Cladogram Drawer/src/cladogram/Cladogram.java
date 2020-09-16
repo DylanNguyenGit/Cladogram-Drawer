@@ -15,12 +15,12 @@ public class Cladogram {
 	 * Constructor that reads from text file and fills up cladogram
 	 * @param fName name of file to be read from
 	 */
-	public Cladogram(String fName) {
+	public Cladogram(File file) {
 		leaves = new ArrayList<Taxon>();
 		nodes = new ArrayList<Taxon>();
 		try {
 			//get scanner and continue erading while it gets lines
-			Scanner fileScanner = new Scanner(new File(fName));
+			Scanner fileScanner = new Scanner(file);
 			while (fileScanner.hasNext()){
 				Scanner lineScanner = new Scanner(fileScanner.nextLine());
 				//format of file will have name first then numbers to indicate children
@@ -56,12 +56,6 @@ public class Cladogram {
 				System.out.println(t.getName());
 			}
 		}
-	}
-	
-	// Empty constructor for a fresh Cladogram
-	public Cladogram() {
-		leaves = new ArrayList<Taxon>();
-		nodes = new ArrayList<Taxon>();
 	}
 	
 	/**
@@ -106,11 +100,27 @@ public class Cladogram {
 	}
 	
 	/**
+	 * Adds leaf to cladogram
+	 * @param t leaf to be added
+	 */
+	public void addLeaf(Taxon t) {
+		leaves.add(t);
+	}
+	
+	/**
 	 * return higher order nodes of the cladogram
 	 * @return nodes of the cladogram
 	 */
 	public ArrayList<Taxon> getNodes(){
 		return nodes;
+	}
+	
+	/**
+	 * adds a node to cladogram
+	 * @param t node to be added
+	 */
+	public void addNode(Taxon t) {
+		nodes.add(t);
 	}
 	
 	private ArrayList<Taxon> leaves;

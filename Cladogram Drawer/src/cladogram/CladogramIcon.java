@@ -2,34 +2,50 @@ package cladogram;
 
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
+import java.io.File;
 
 import javax.swing.Icon;
 
+/**
+ * 
+ * The class responsible for drawing and being the icon for the swing ui
+ *
+ */
 public class CladogramIcon implements Icon {
 
-	public CladogramIcon(int height, int width, String fName) {
+	public CladogramIcon(int height, int width, File file) {
 		this.height = height;
 		this.width = width;
-		cladogram = new Cladogram(fName);
+		cladogram = new Cladogram(file);
 		leafCount = 0;
 	}
 	
 	@Override
 	public void paintIcon(Component c, Graphics g, int x, int y) {
 		Graphics2D g2 = (Graphics2D)g;
+		int yStep = 0;;
+		int xStep = 0;
 		
-		//set space between y values to make it so they all fit on the screen
-		int yStep = (height - 40) / (cladogram.getLeaves().size() - 1);
-		//ensure the cladogram fits x wise since max tree height is leaves - 1
-		int xStep = (width - 105) / (cladogram.getTreeHeight() - 1); 
-		
-		//picks initial leaf then draws entire tree by going up the tree
-		Taxon init = cladogram.getInitialTaxon(1);
-		while (init != null) {
-			draw(init, g2, xStep, yStep);
-			init = init.getParent();
+		if(cladogram.getLeaves().size() > 1) {
+			//set space between y values to make it so they all fit on the screen
+			yStep = (height - 40) / (cladogram.getLeaves().size() - 1);
 		}
+		if(cladogram.getTreeHeight() > 1) {
+			//ensure the cladogram fits x wise since max tree height is leaves - 1
+			xStep = (width - 105) / (cladogram.getTreeHeight() - 1); 
+		}
+		
+		//draws all elements in cladogram
+		for(Taxon t : cladogram.getLeaves()) {
+			while (t != null) {
+				draw(t, g2, xStep, yStep);
+				t = t.getParent();
+			}
+		}
+		
+		//reset counter and isdrawn for potential additional draws
 		leafCount= 0;
+		reset();
 	}
 
 	@Override
@@ -40,6 +56,14 @@ public class CladogramIcon implements Icon {
 	@Override
 	public int getIconHeight() {
 		return height;
+	}
+	
+	/**
+	 * returns cladogram represetned by icon
+	 * @return cladogram represented by icon
+	 */
+	public Cladogram getCladogram() {
+		return cladogram;
 	}
 	
 	/**
@@ -95,6 +119,18 @@ public class CladogramIcon implements Icon {
 		g.setColor(Color.BLACK);
 		g.drawString(t.getName(), t.getX(), t.getY());
 		t.setDrawn(true);
+	}
+	
+	/**
+	 * Resets all taxa to not drawn
+	 */
+	public void reset() {
+		for(Taxon t : cladogram.getLeaves()) {
+			t.setDrawn(false);
+		}
+		for(Taxon t : cladogram.getNodes()) {
+			t.setDrawn(false);
+		}
 	}
 
 	private int height;

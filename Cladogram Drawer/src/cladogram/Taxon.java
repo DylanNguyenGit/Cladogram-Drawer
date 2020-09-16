@@ -34,6 +34,14 @@ public class Taxon {
 	}
 	
 	/**
+	 * Adds given child to children list
+	 * @param child child to be added
+	 */
+	public void addChild(Taxon child) {
+		children.add(child);
+	}
+	
+	/**
 	 * returns children list
 	 * @return list of children taxa
 	 */
