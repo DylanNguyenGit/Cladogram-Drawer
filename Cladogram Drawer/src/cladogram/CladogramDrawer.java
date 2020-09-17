@@ -52,4 +52,5 @@ public class CladogramDrawer {
 	    frame.setSize(new Dimension(800, 800));
 	    frame.setVisible(true);
 	}
+	
 }
