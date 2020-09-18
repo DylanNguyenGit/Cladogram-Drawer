@@ -4,8 +4,8 @@ Trying to make a means of drawing cladograms in Java(developed in JavaSE 14)
 # Current Running
 As of now, the way that this program runs is by running CladogramDrawer.java.
 It requires a text file to exist and be opened. Cladograms can be made with an empty text file by using the add drop down menu.
-the leaf option will ask for a name and then it will add a leaf witht he given name. The node option will ask for a name then ask for 
-the children. Simply select one child at a time with the drop down menu and click the first option when finished. The other menu options are not yet implemented.
+the leaf option will ask for a name and then it will add a leaf with the given name. The node option will ask for a name then ask for 
+the children. Simply select one child at a time with the drop down menu and click the first option when finished. To resize the cladogram simply select the resize option from the window menu and input a width and a height. 
 
 If a certain cladogram wants to be read it must follow the format:
 1. All leaves must be listed first and only have a name. Leaves are taxa at the end of the cladogram.
@@ -30,6 +30,8 @@ Canidae 3 4 <br />
 Note how RedFox has no spaces as the name can't have spaces. Canidae is followed by 
 3 and 4 as it encompasses RedFox and Canis.
 
+The file menu options allows for opening of another text file or saving and overrriding the currently selected file.
+
 # Future Goals
-Add a better UI functionality like saving, resizing window, and deletion <br />
+Add a better UI functionality like deletion <br />
 Fix bug that appears to break manual cladograms at sufficient sizes <br />
